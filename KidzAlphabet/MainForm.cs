@@ -41,7 +41,19 @@ namespace KidzAlphabet
                 {
                     
                     lblHurufBesar.Text = e.KeyChar.ToString().ToUpper();
-                    axWindowsMediaPlayer1.URL = Application.StartupPath + "\\suara\\" + hurufKecil + ".wav";
+                    string suaraWav, suaraWma;
+                    
+                    suaraWav = Application.StartupPath + "\\suara\\" + hurufKecil + ".wav";
+                    suaraWma = Application.StartupPath + "\\suara\\" + hurufKecil + ".wma";
+                    if (System.IO.File.Exists(suaraWav))
+                    {
+                        axWindowsMediaPlayer1.URL = suaraWav;
+                    }
+                    else if (System.IO.File.Exists(suaraWma))
+                    {
+                        axWindowsMediaPlayer1.URL = suaraWma;
+                    }
+                    
                     picGambar.Load(Application.StartupPath + "\\gambar\\" + hurufKecil + ".png");
                 }
                 switch (hurufKecil)
