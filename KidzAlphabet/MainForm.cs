@@ -36,12 +36,15 @@ namespace KidzAlphabet
             }
             try
             {
-                
-                lblHurufKecil.Text = e.KeyChar.ToString().ToLower();
-                lblHurufBesar.Text = e.KeyChar.ToString().ToUpper();
-                axWindowsMediaPlayer1.URL = Application.StartupPath + "\\suara\\" + lblHurufKecil.Text + ".wav";
-                picGambar.Load(Application.StartupPath + "\\gambar\\" + lblHurufKecil.Text + ".png");
-                switch (lblHurufKecil.Text)
+                string hurufKecil = lblHurufKecil.Text = e.KeyChar.ToString().ToLower();
+                if (Convert.ToChar(hurufKecil.ToCharArray()[0]) >= 'a' && Convert.ToChar(hurufKecil) <= 'z')
+                {
+                    
+                    lblHurufBesar.Text = e.KeyChar.ToString().ToUpper();
+                    axWindowsMediaPlayer1.URL = Application.StartupPath + "\\suara\\" + hurufKecil + ".wav";
+                    picGambar.Load(Application.StartupPath + "\\gambar\\" + hurufKecil + ".png");
+                }
+                switch (hurufKecil)
                 {
                     case "a" :
                         lblNama.Text = "Apel";
@@ -122,8 +125,8 @@ namespace KidzAlphabet
             }
             catch (Exception ex)
             {   
-                lblHurufKecil.Text = "";
-                lblHurufBesar.Text = ex.Message;
+                //lblHurufKecil.Text = "";
+                //lblHurufBesar.Text = ex.Message;
             }
         }
     }
